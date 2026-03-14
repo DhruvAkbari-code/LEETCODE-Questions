@@ -28,7 +28,8 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-int main()
+//? this is with using the sort method
+/* int main()
 {
     vector<int> nums1 = {1, 2, 3, 0, 0, 0};
     vector<int> nums2 = {2, 5, 6};
@@ -48,5 +49,38 @@ int main()
     {
         cout << n << " ";
     }
+    return 0;
+} */
+
+// ? This is without using the sort method
+int main()
+{
+    vector<int> nums1 = {1, 2, 3, 3, 0, 0, 0};
+    vector<int> nums2 = {2, 5, 6};
+
+    int m = 4;
+    int n = nums2.size();
+
+    int i = m - 1;
+    int j = n - 1;
+    int idx = m + n - 1;
+
+    while (i >= 0 && j >= 0)
+    {
+        if (nums1[i] >= nums2[j])
+            nums1[idx--] = nums1[i--];
+        else
+            nums1[idx--] = nums2[j--];
+    }
+    while (j >= 0)
+    {
+        nums1[idx--] = nums2[j--];
+    }
+
+    for (int n : nums1)
+    {
+        cout << n << " ";
+    }
+
     return 0;
 }
