@@ -27,6 +27,7 @@ using namespace std;
 int main()
 {
     vector<int> nums = {1, 3, 4, 2, 2};
+    //! Method 1 to solve
     // unordered_set<int> s;
     // for(int i = 0; i < nums.size(); i++){
     //     if(s.find(nums[i]) != s.end()){
@@ -36,16 +37,38 @@ int main()
     // }
     // return 0;
 
-    int n = nums.size();
-    vector<int> freq(n, 0);
+    //! Method 2 to solve
+    // int n = nums.size();
+    // vector<int> freq(n, 0);
 
-    for (int i = 0; i < n; i++)
+    // for (int i = 0; i < n; i++)
+    // {
+    //     freq[nums[i]]++;
+    //     if (freq[nums[i]] == 2)
+    //     {
+    //         cout << nums[i];
+    //     }
+    // }
+    // return 0;
+
+    //! Method 3 to solve with constant extra space
+    int slow = nums[0], fast = nums[0];
+    do
     {
-        freq[nums[i]]++;
-        if (freq[nums[i]] == 2)
-        {
-            cout << nums[i];
-        }
+        slow = nums[slow];
+        fast = nums[nums[fast]];
+
+    } while (slow != fast);
+
+    slow = nums[0];
+
+    while (slow != fast)
+    {
+        slow = nums[slow];
+        fast = nums[fast];
     }
+
+    cout << slow;
+
     return 0;
 }
