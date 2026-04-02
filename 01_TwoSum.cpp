@@ -22,6 +22,7 @@
 
 #include <iostream>
 #include <vector>
+#include <unordered_map>
 using namespace std;
 
 int main()
@@ -29,15 +30,27 @@ int main()
     vector<int> nums = {2, 7, 11, 15};
     int target = 9;
     int n = nums.size();
-    for (int i = 0; i < n; i++)
+    // for (int i = 0; i < n; i++)
+    // {
+    //     for (int j = i + 1; j < n; j++)
+    //     {
+    //         if ((nums[i] + nums[j]) == target)
+    //         {
+    //             cout << i << j;
+    //         }
+    //     }
+    // }
+
+    unordered_map<int, int> m;
+    for (int i = 0; i < nums.size(); i++)
     {
-        for (int j = i + 1; j < n; j++)
+        int sum = target - nums[i];
+        if (m.find(sum) != m.end())
         {
-            if ((nums[i] + nums[j]) == target)
-            {
-                cout << i << j;
-            }
+            cout << i << m[sum];
         }
+        m.insert({nums[i], i});
     }
+
     return 0;
 }
